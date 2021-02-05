@@ -1,9 +1,9 @@
 package no.hvl.dat110.system.display;
 
-import no.hvl.dat110.TODO;
+
 import no.hvl.dat110.rpc.RPCImpl;
 import no.hvl.dat110.rpc.RPCUtils;
-import no.hvl.dat110.system.sensor.SensorImpl;
+
 
 public class DisplayImpl implements RPCImpl {
 	

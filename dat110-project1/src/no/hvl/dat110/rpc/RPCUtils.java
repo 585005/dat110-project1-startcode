@@ -43,12 +43,8 @@ public class RPCUtils {
 
 	public static byte[] marshallVoid(byte rpcid) {
 
-		byte[] encoded = new byte[0]; 
+		return new byte[]{rpcid};
 		
-		encoded[0] = rpcid;
-
-		return encoded;
-
 	}
 
 	public static void unmarshallVoid(byte[] data) {

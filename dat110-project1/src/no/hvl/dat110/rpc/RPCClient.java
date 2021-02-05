@@ -1,9 +1,7 @@
 package no.hvl.dat110.rpc;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
 
-import no.hvl.dat110.TODO;
+
 import no.hvl.dat110.messaging.*;
 
 public class RPCClient {

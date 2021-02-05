@@ -1,8 +1,7 @@
 package no.hvl.dat110.system.controller;
 
-import java.io.IOException;
 
-import no.hvl.dat110.TODO;
+
 import no.hvl.dat110.rpc.*;
 
 public class Sensor extends RPCStub {

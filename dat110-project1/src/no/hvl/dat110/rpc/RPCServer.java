@@ -1,9 +1,8 @@
 package no.hvl.dat110.rpc;
 
-import java.io.IOException;
+
 import java.util.HashMap;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.Connection;
 import no.hvl.dat110.messaging.Message;
 import no.hvl.dat110.messaging.MessagingServer;
@@ -54,6 +53,8 @@ public class RPCServer {
 			 byte[] reply = rpcImpl.invoke(payload);
 			 Message newMessage = new Message(reply);
 			
+			 connection.send(newMessage);
+			 
 		 }
 		   // TODO
 		   // - receive message containing RPC request

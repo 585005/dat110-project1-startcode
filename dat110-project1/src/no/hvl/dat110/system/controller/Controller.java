@@ -1,8 +1,5 @@
 package no.hvl.dat110.system.controller;
 
-import java.io.IOException;
-
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.RPCClient;
 import no.hvl.dat110.rpc.RPCServerStopStub;
 
@@ -61,20 +58,8 @@ public class Controller  {
 			}
 		}
 		
-		
-		
-		try {
-			stopdisplay.stop();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			stopsensor.stop();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		stopdisplay.stop();
+		stopsensor.stop();
 	
 		displayclient.disconnect();
 		sensorclient.disconnect();
