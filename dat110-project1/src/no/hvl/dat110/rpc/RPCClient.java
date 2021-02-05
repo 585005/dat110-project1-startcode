@@ -20,7 +20,7 @@ public class RPCClient {
 		remote.register(this);
 	}
 	
-	public void connect() throws UnknownHostException, IOException {
+	public void connect() {
 		
 		if(connection == null) {
 			connection = msgclient.connect();
@@ -33,7 +33,7 @@ public class RPCClient {
 		
 	}
 	
-	public byte[] call(byte[] rpcrequest) throws IOException {
+	public byte[] call(byte[] rpcrequest) {
 		
 		byte[] rpcreply;
 		Message message = new Message(rpcrequest);

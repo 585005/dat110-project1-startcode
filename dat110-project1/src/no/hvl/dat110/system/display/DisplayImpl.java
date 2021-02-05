@@ -6,38 +6,30 @@ import no.hvl.dat110.rpc.RPCUtils;
 import no.hvl.dat110.system.sensor.SensorImpl;
 
 public class DisplayImpl implements RPCImpl {
-
-	static final int RANGE = 20;
-
-	//? usikker om det er slik de vil vi skal gjøre dette 
-	
-	public int read() {
-
-		long seconds = System.currentTimeMillis();
-
-		double temp = RANGE * Math.sin(seconds / 1000);
-
-		return (int) Math.ceil(temp);
-	}
 	
 	public void write(String message) {
 		System.out.println("DISPLAY:" + message);
 	}
 	
+	
 	public byte[] invoke(byte[] request) {
-		
-		int temp = read();
 
-		RPCUtils.unmarshallVoid(request); 
+		String message = RPCUtils.unmarshallString(request); 
 		
 		byte rpcid = request[0];
 		
-		byte[] reply = RPCUtils.marshallInteger(rpcid, temp);
+		write(message);
+		
+		//når vet man hvilken marshall/unmarshall metode vi skal bruke? 
+	
+		
+		byte[] reply = RPCUtils.marshallVoid(rpcid);
 		
 		// TODO: 
 		// implement unmarshalling, call, and marshall for write RPC method
-		// look at how this is done int he SensorImpl for the read method
+		// look at how this is done in the SensorImpl for the read method
 		
 		return reply;
 	}
+	
 }

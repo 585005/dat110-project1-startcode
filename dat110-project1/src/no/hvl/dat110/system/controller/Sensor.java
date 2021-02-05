@@ -9,7 +9,7 @@ public class Sensor extends RPCStub {
 
 	private byte RPCID = 1;
 	
-	public int read() throws IOException {
+	public int read() {
 		
 		int temp;
 		

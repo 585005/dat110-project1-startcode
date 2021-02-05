@@ -10,7 +10,7 @@ public class Controller  {
 	
 	private static int N = 5;
 	
-	public static void main (String[] args) throws IOException {
+	public static void main (String[] args) {
 		
 		Display display;
 		Sensor sensor;
@@ -22,8 +22,8 @@ public class Controller  {
 		RPCServerStopStub stopdisplay = new RPCServerStopStub();
 		RPCServerStopStub stopsensor = new RPCServerStopStub();
 		
-		displayclient = new RPCClient(Common.DISPLAYHOST,N);
-		sensorclient = new RPCClient(Common.SENSORHOST,N);
+		displayclient = new RPCClient(Common.DISPLAYHOST,Common.DISPLAYPORT);
+		sensorclient = new RPCClient(Common.SENSORHOST,Common.SENSORPORT);
 		
 		// TODO
 		// connect to sensor and display RPC servers
@@ -48,15 +48,33 @@ public class Controller  {
 		// TODO:
 		// loop while reading from sensor and write to display via RPC
 		
+		for(int i = 0; i < N; i++) {
+			
+			int read = sensor.read();
+			display.write(Integer.toString(read));
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
-		//hva skal man stoppe loop'en med? 
-		//skal vi parse read til en string, slik at vi kan putte dette inn i display sin write? 
 		
-		int read = sensor.read();
-		display.write();
 		
-		stopdisplay.stop();
-		stopsensor.stop();
+		try {
+			stopdisplay.stop();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			stopsensor.stop();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 		displayclient.disconnect();
 		sensorclient.disconnect();

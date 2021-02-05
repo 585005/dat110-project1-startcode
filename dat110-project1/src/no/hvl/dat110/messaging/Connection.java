@@ -33,22 +33,37 @@ public class Connection {
 		}
 	}
 
-	public void send(Message message) throws IOException {
+	public void send(Message message) {
 		
 		byte[] encoded = message.encapsulate();
 			
-			outStream.write(encoded);
+			try {
+				outStream.write(encoded);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	
-			outStream.close();
+			try {
+				outStream.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
-	public Message receive() throws IOException {
+	public Message receive() {
 
 		Message message = new Message();
 		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 		
 		
-		inStream.read(recvbuf);
+		try {
+			inStream.read(recvbuf);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//recvbuf = inStream.readAllBytes();
 		

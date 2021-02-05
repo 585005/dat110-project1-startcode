@@ -18,9 +18,18 @@ public class MessagingClient {
 	}
 
 	// connect to messaging server
-	public Connection connect() throws UnknownHostException, IOException {
+	public Connection connect()  {
 
-		Socket clientSocket = new Socket(server, port);
+		Socket clientSocket = null;
+		try {
+			clientSocket = new Socket(server, port);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Connection connection = new Connection(clientSocket);
 
