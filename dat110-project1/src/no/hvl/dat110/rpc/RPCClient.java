@@ -36,14 +36,11 @@ public class RPCClient {
 		byte[] rpcreply;
 		Message message = new Message(rpcrequest);
 		
-		
-		//spørsmål i lab, hvordan fungerer dette? 
-		
 		connection.send(message);
 		
-		message = connection.receive();
+		Message message2 = connection.receive();
 		
-		rpcreply = message.getData();
+		rpcreply = message2.getData();
 		
 		return rpcreply;
 		

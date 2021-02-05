@@ -19,8 +19,6 @@ public class DisplayImpl implements RPCImpl {
 		byte rpcid = request[0];
 		
 		write(message);
-		
-		//når vet man hvilken marshall/unmarshall metode vi skal bruke? 
 	
 		
 		byte[] reply = RPCUtils.marshallVoid(rpcid);

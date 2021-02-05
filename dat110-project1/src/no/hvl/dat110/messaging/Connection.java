@@ -34,18 +34,10 @@ public class Connection {
 	}
 
 	public void send(Message message) {
-		
-		byte[] encoded = message.encapsulate();
 			
 			try {
+				byte[] encoded = message.encapsulate();
 				outStream.write(encoded);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-			try {
-				outStream.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -57,14 +49,21 @@ public class Connection {
 		Message message = new Message();
 		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 		
-		
-		try {
-			inStream.read(recvbuf);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		int l = 0;
+	
+			try {
+				l = inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
+				
+				if(l != MessageConfig.SEGMENTSIZE) {
+					throw new IOException("");
+				}
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+			
 		//recvbuf = inStream.readAllBytes();
 		
 		message.decapsulate(recvbuf);

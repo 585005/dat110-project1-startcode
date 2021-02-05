@@ -28,13 +28,13 @@ public class MessagingServer {
 
 		Connection connection = null;
 		try {
-			connection = new Connection(welcomeSocket.accept());
+			Socket socket = welcomeSocket.accept();
+			connection = new Connection(socket);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
-
 		return connection;
 
 	}

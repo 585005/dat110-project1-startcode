@@ -17,18 +17,10 @@ public class RPCUtils {
 
 		byte[] encoded = new byte[str.getBytes().length + 1];
 		
-		byte[] strEncoded = new byte[str.getBytes().length]; 
-		
-		//hvorfor må vi legge str i en byte tabell ? 
-		//og ikke direkte i for-løkken skrive 
-		//encoded[i+1] = (byte) str.indexOf(i);
-		
-		strEncoded = str.getBytes();
-		
 		encoded[0] = rpcid; 
 		
 		for(int i = 0; i < str.length(); i++) {
-			encoded[i+1] = strEncoded[i];
+			encoded[i+1] = (byte) str.charAt(i);
 		}
 		
 		return encoded;
@@ -43,7 +35,10 @@ public class RPCUtils {
 
 	public static byte[] marshallVoid(byte rpcid) {
 
-		return new byte[]{rpcid};
+		byte[] b = new byte[1]; 
+		b[0] = rpcid;
+		
+		return b;
 		
 	}
 

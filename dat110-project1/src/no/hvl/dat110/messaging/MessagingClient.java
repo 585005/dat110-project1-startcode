@@ -21,8 +21,10 @@ public class MessagingClient {
 	public Connection connect()  {
 
 		Socket clientSocket = null;
+		Connection connection = null;
 		try {
 			clientSocket = new Socket(server, port);
+			connection = new Connection(clientSocket);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,7 +33,7 @@ public class MessagingClient {
 			e.printStackTrace();
 		}
 		
-		Connection connection = new Connection(clientSocket);
+		
 
 		return connection;
 	}
