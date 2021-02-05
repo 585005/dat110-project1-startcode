@@ -1,5 +1,8 @@
 package no.hvl.dat110.rpc;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.*;
 
@@ -17,39 +20,32 @@ public class RPCClient {
 		remote.register(this);
 	}
 	
-	public void connect() {
+	public void connect() throws UnknownHostException, IOException {
 		
-		// TODO: connect using the underlying messaging layer connection
-		
-	    throw new UnsupportedOperationException(TODO.method());
-			
+		if(connection == null) {
+			connection = msgclient.connect();
+		}
 	}
 	
 	public void disconnect() {
 		
-		// TODO: disconnect/close the underlying messaging connection
-		
-		throw new UnsupportedOperationException(TODO.method());
+		this.connection.close();
 		
 	}
 	
-	public byte[] call(byte[] rpcrequest) {
+	public byte[] call(byte[] rpcrequest) throws IOException {
 		
 		byte[] rpcreply;
+		Message message = new Message(rpcrequest);
 		
-		/* TODO: 
 		
-		Make a remote call on the RPC server by sending the RPC request message
-		and receive an RPC reply message
+		//spørsmål i lab, hvordan fungerer dette? 
 		
-		rpcrequest is the marshalled rpcrequest from the client-stub
-		rpctreply is the rpcreply to be unmarshalled by the client-stub
+		connection.send(message);
 		
-		*/
+		message = connection.receive();
 		
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		rpcreply = message.getData();
 		
 		return rpcreply;
 		
