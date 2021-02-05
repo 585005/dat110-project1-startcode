@@ -8,21 +8,16 @@ import no.hvl.dat110.messaging.MessageConfig;
 
 public class RPCUtils {
 
-	// Utility methods for marshalling and marshalling of parameters and return values
-	// in RPC request and RPC responses
-	// data bytearrays and return byte arrays is according to the 
-	// RPC message syntax [rpcid,parameter/return value]
-	
 	public static byte[] marshallString(byte rpcid, String str) {
 
 		byte[] encoded = new byte[str.getBytes().length + 1];
-		
-		encoded[0] = rpcid; 
-		
-		for(int i = 0; i < str.length(); i++) {
-			encoded[i+1] = (byte) str.charAt(i);
+
+		encoded[0] = rpcid;
+
+		for (int i = 0; i < str.length(); i++) {
+			encoded[i + 1] = (byte) str.charAt(i);
 		}
-		
+
 		return encoded;
 	}
 
@@ -35,15 +30,15 @@ public class RPCUtils {
 
 	public static byte[] marshallVoid(byte rpcid) {
 
-		byte[] b = new byte[1]; 
+		byte[] b = new byte[1];
 		b[0] = rpcid;
-		
+
 		return b;
-		
+
 	}
 
 	public static void unmarshallVoid(byte[] data) {
-		
+
 		return;
 	}
 
@@ -70,25 +65,23 @@ public class RPCUtils {
 
 	public static byte[] marshallInteger(byte rpcid, int x) {
 
-		
 		byte[] encoded = new byte[5];
 		byte[] buffer = ByteBuffer.allocate(4).putInt(x).array();
-		 
+
 		encoded[0] = rpcid;
-		
-		for(int i = 1; i < encoded.length; i++) {
-			encoded[i] = buffer[i-1];
+
+		for (int i = 1; i < encoded.length; i++) {
+			encoded[i] = buffer[i - 1];
 		}
 
 		return encoded;
 	}
 
 	public static int unmarshallInteger(byte[] data) {
-		
+
 		int decoded;
-		
+
 		return decoded = ByteBuffer.wrap(data, 1, 4).getInt();
 
-		
 	}
 }

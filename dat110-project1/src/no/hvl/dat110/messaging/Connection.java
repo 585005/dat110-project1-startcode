@@ -15,7 +15,6 @@ public class Connection {
 	private DataInputStream inStream; // for reading bytes from the underlying TCP connection
 	private Socket socket; // socket for the underlying TCP connection
 
-
 	public Connection(Socket socket) {
 
 		try {
@@ -34,40 +33,36 @@ public class Connection {
 	}
 
 	public void send(Message message) {
-			
-			try {
-				byte[] encoded = message.encapsulate();
-				outStream.write(encoded);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+		try {
+			byte[] encoded = message.encapsulate();
+			outStream.write(encoded);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	public Message receive() {
 
 		Message message = new Message();
 		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
-		
-		int l = 0;
-	
-			try {
-				l = inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
-				
-				if(l != MessageConfig.SEGMENTSIZE) {
-					throw new IOException("");
-				}
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-			
-		//recvbuf = inStream.readAllBytes();
-		
-		message.decapsulate(recvbuf);
 
+		int l = 0;
+
+		try {
+			l = inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
+
+			if (l != MessageConfig.SEGMENTSIZE) {
+				throw new IOException("");
+			}
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		message.decapsulate(recvbuf);
 
 		return message;
 

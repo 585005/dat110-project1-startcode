@@ -31,10 +31,10 @@ public class MessagingServer {
 			Socket socket = welcomeSocket.accept();
 			connection = new Connection(socket);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return connection;
 
 	}

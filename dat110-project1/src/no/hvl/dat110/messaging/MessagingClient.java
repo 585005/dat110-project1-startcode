@@ -18,7 +18,7 @@ public class MessagingClient {
 	}
 
 	// connect to messaging server
-	public Connection connect()  {
+	public Connection connect() {
 
 		Socket clientSocket = null;
 		Connection connection = null;
@@ -26,14 +26,12 @@ public class MessagingClient {
 			clientSocket = new Socket(server, port);
 			connection = new Connection(clientSocket);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-		
-		
 
 		return connection;
 	}
